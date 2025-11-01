@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Lindsey | Executive Chef & Culinary Consultant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #2b2b2b;
+            --accent-gold: #c9a961;
+            --light-bg: #f8f8f7;
+            --white: #ffffff;
+            --text-gray: #4a4a4a;
+            --light-gold-hover: #d4b871;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-menu a {
+            color: var(--primary-dark);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background: var(--primary-dark);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/IMG_8506.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--light-gold-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(201, 169, 97, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--white);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 0;
+                top: 10px;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                top: 30px;
+            }
+        }
+
+        section {
+            padding: 6rem 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .highlight-icon {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+        }
+
+        .highlight-text {
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .private-chef {
+            background: var(--light-bg);
+        }
+
+        .services-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .how-it-works {
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        .how-it-works h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-gold);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .consulting {
+            background: var(--white);
+        }
+
+        .consulting-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .consulting-card {
+            background: var(--light-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .consulting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .consulting-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .consulting-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 3rem 0;
+            background: var(--primary-dark);
+            color: var(--white);
+            border-radius: 2px;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .portfolio {
+            background: var(--light-bg);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .contact {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .contact h2 {
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info h3 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .success-message {
+            display: none;
+            padding: 1rem;
+            background: rgba(201, 169, 97, 0.2);
+            border: 1px solid var(--accent-gold);
+            border-radius: 2px;
+            color: var(--accent-gold);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: var(--white);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: var(--light-gold-hover);
+            transform: translateY(-5px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: var(--white);
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-gold);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                flex-direction: column;
+                background: var(--primary-dark);
+                padding: 5rem 2rem;
+                transition: right 0.3s ease;
+                gap: 2rem;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                color: var(--white);
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image img {
+                height: 400px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .services-cards,
+            .consulting-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">GABRIEL LINDSEY</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#private-chef">Private Chef</a></li>
+                <li><a href="#consulting">Consulting</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>GABRIEL LINDSEY</h1>
+            <h2>Executive Chef | Private Chef & Culinary Consultant</h2>
+            <p>Elevated coastal cuisine that keeps it simple</p>
+            <div class="hero-buttons">
+                <a href="#private-chef" class="btn btn-primary">Private Chef Services</a>
+                <a href="#consulting" class="btn btn-secondary">Restaurant Consulting</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Meet Chef Gabriel</h2>
+            <div class="about-content fade-in">
+                <div class="about-image">
+                    <img src="images/IMG_8515.jpg" alt="Chef Gabriel Lindsey">
+                </div>
+                <div class="about-text">
+                    <h3>Culinary Excellence Rooted in Experience</h3>
+                    <p>With over 12 years of experience in the culinary world, Gabriel Lindsey has honed his craft in some of New York City's most acclaimed fine dining establishments. His journey through prestigious kitchens has shaped a unique culinary philosophy that balances technical precision with creative innovation.</p>
+                    <p>As the former Executive Chef at Model Citizen, Gabriel led a talented team in creating memorable dining experiences that celebrated coastal California cuisine with a modern sensibility. His approach emphasizes the beauty of simplicity—allowing quality ingredients to shine through thoughtful preparation and elegant presentation.</p>
+                    <p>Today, Gabriel brings his expertise directly to your table through private chef services and provides strategic consulting to help restaurants elevate their operations, menus, and overall culinary vision.</p>
+                    <div class="highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✦</span>
+                            <span class="highlight-text">12+ Years Experience</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✦</span>
+                            <span class="highlight-text">NYC Fine Dining Background</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✦</span>
+                            <span class="highlight-text">Former Executive Chef, Model Citizen</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✦</span>
+                            <span class="highlight-text">Coastal California Specialist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="private-chef" class="private-chef">
+        <div class="container">
+            <h2>Private Chef Services</h2>
+            <p class="section-subtitle">Bring restaurant-quality dining to your home with personalized culinary experiences tailored to your preferences and occasion.</p>
+            
+            <div class="services-cards fade-in">
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>Intimate Dinners</h3>
+                    <p>Host unforgettable dinner parties with custom menus crafted for your guests. From elegant multi-course meals to relaxed family-style dining, every detail is thoughtfully prepared.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎉</div>
+                    <h3>Special Events</h3>
+                    <p>Celebrate life's milestones with cuisine that matches the moment. Weddings, anniversaries, corporate events—each menu is designed to make your occasion extraordinary.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <h3>Weekly Meal Prep</h3>
+                    <p>Enjoy chef-prepared meals throughout your week. Customized meal planning and preparation that fits your dietary preferences, schedule, and lifestyle.</p>
+                </div>
+            </div>
+
+            <div class="how-it-works fade-in">
+                <h3>How It Works</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Consultation</h4>
+                        <p>We discuss your vision, dietary needs, and preferences</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Menu Design</h4>
+                        <p>A custom menu is created specifically for your event</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Confirmation</h4>
+                        <p>Review and approve all details, timing, and logistics</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>The Experience</h4>
+                        <p>Relax and enjoy while every course is expertly prepared</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="#contact" class="btn btn-primary">Inquire About Private Chef Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="consulting" class="consulting">
+        <div class="container">
+            <h2>Restaurant Consulting</h2>
+            <p class="consulting-intro">Drawing from years of experience managing high-volume operations and leading successful culinary teams, Gabriel provides strategic consulting to help restaurants optimize performance, reduce costs, and elevate their culinary offerings.</p>
+            
+            <div class="consulting-grid fade-in">
+                <div class="consulting-card">
+                    <h4>Menu Development</h4>
+                    <p>Create compelling menus that balance creativity, profitability, and operational efficiency. Strategic item selection and seasonal planning that resonates with your target audience.</p>
+                </div>
+                <div class="consulting-card">
+                    <h4>Kitchen Operations</h4>
+                    <p>Streamline workflows, optimize station setup, and implement systems that increase speed of service while maintaining quality standards.</p>
+                </div>
+                <div class="consulting-card">
+                    <h4>Operational Excellence</h4>
+                    <p>Comprehensive analysis and improvement of kitchen operations, from prep procedures to service flow, ensuring maximum efficiency.</p>
+                </div>
+                <div class="consulting-card">
+                    <h4>Staff Training</h4>
+                    <p>Develop and train culinary teams in techniques, standards, and leadership. Build a culture of excellence and accountability in your kitchen.</p>
+                </div>
+                <div class="consulting-card">
+                    <h4>Concept Development</h4>
+                    <p>From initial vision to full execution, guidance on creating restaurant concepts that stand out in competitive markets.</p>
+                </div>
+                <div class="consulting-card">
+                    <h4>Opening Support</h4>
+                    <p>Navigate the critical pre-opening and launch phases with confidence. Kitchen setup, staff hiring, training, and operational readiness.</p>
+                </div>
+            </div>
+
+            <div class="stats fade-in">
+                <div class="stat">
+                    <div class="stat-number">12%</div>
+                    <div class="stat-label">Labor Cost</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">&lt;30%</div>
+                    <div class="stat-label">Food Cost</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Team Members Managed</div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="#contact" class="btn btn-primary">Discuss Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Signature Dishes</h2>
+            <p class="section-subtitle">A glimpse into the artistry and precision that defines Gabriel's culinary approach</p>
+            
+            <div class="gallery fade-in">
+                <div class="gallery-item" data-name="Coastal Creation">
+                    <img src="images/IMG_8496.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Coastal Creation</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Seasonal Elegance">
+                    <img src="images/IMG_8497.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Seasonal Elegance</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Fresh Composition">
+                    <img src="images/IMG_8499.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Fresh Composition</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Refined Simplicity">
+                    <img src="images/IMG_8500.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Refined Simplicity</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Modern Classic">
+                    <img src="images/IMG_8503.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Modern Classic</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Artful Presentation">
+                    <img src="images/IMG_8508.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Artful Presentation</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Culinary Precision">
+                    <img src="images/IMG_8509.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Culinary Precision</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Elevated Comfort">
+                    <img src="images/IMG_8510.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Elevated Comfort</h4>
+                    </div>
+                </div>
+                <div class="gallery-item" data-name="Seasonal Harvest">
+                    <img src="images/IMG_8511.jpg" alt="Signature Dish">
+                    <div class="gallery-overlay">
+                        <h4>Seasonal Harvest</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Create Something Exceptional</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Whether you're planning an intimate dinner or seeking to elevate your restaurant, let's discuss how we can work together.</p>
+            
+            <div class="contact-content">
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interest *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="private-chef">Private Chef</option>
+                                <option value="consulting">Restaurant Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <div class="success-message" id="successMessage">
+                            Thank you for your inquiry! Gabriel will be in touch within 24 hours.
+                        </div>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>chef@gabriellindsey.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span>(555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Los Angeles, CA</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/the_reservoir_dog/" target="_blank" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>&copy; 2025 Gabriel Lindsey. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/the_reservoir_dog/" target="_blank" class="social-link" aria-label="Instagram">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img src="" alt="Gallery Image" id="modalImage">
+        </div>
+    </div>
+
+    <script>
+        const nav = document.getElementById('nav');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const backToTop = document.getElementById('backToTop');
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+                backToTop.classList.add('show');
+            } else {
+                nav.classList.remove('scrolled');
+                backToTop.classList.remove('show');
+            }
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successMessage.classList.add('show');
+            contactForm.reset();
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                modalImage.src = img.src;
+                modal.classList.add('show');
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
