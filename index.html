@@ -1,1382 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Lindsey | Executive Chef & Culinary Consultant</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-dark: #2b2b2b;
-            --accent-gold: #c9a961;
-            --light-bg: #f8f8f7;
-            --white: #ffffff;
-            --text-gray: #4a4a4a;
-            --light-gold-hover: #d4b871;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-dark);
-        }
-
-        nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        nav.scrolled {
-            background: var(--white);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--white);
-        }
-
-        nav.scrolled .logo {
-            color: var(--primary-dark);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--white);
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
-        }
-
-        nav.scrolled .nav-menu a {
-            color: var(--primary-dark);
-        }
-
-        .nav-menu a:hover {
-            color: var(--accent-gold);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            z-index: 1001;
-            position: relative;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled .hamburger span {
-            background: var(--primary-dark);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/IMG_8506.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 400;
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            color: var(--accent-gold);
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--accent-gold);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--light-gold-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(201, 169, 97, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 30px;
-            height: 50px;
-            border: 2px solid var(--white);
-            border-radius: 25px;
-            position: relative;
-        }
-
-        .scroll-indicator span::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            width: 6px;
-            height: 6px;
-            background: var(--white);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            animation: scroll 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        @keyframes scroll {
-            0% {
-                opacity: 0;
-                top: 10px;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                top: 30px;
-            }
-        }
-
-        section {
-            padding: 6rem 3rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about {
-            background: var(--white);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .about-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            padding: 2rem;
-            background: var(--light-bg);
-            border-left: 3px solid var(--accent-gold);
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .highlight-icon {
-            color: var(--accent-gold);
-            font-size: 1.5rem;
-        }
-
-        .highlight-text {
-            font-weight: 500;
-            color: var(--primary-dark);
-        }
-
-        .private-chef {
-            background: var(--light-bg);
-        }
-
-        .services-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .how-it-works {
-            margin-top: 5rem;
-            margin-bottom: 3rem;
-        }
-
-        .how-it-works h3 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .step {
-            text-align: center;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--accent-gold);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .consulting {
-            background: var(--white);
-        }
-
-        .consulting-intro {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .consulting-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .consulting-card {
-            background: var(--light-bg);
-            padding: 2.5rem 2rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .consulting-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .consulting-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-gold);
-        }
-
-        .consulting-card p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 3rem 0;
-            background: var(--primary-dark);
-            color: var(--white);
-            border-radius: 2px;
-            margin-top: 3rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 600;
-            color: var(--accent-gold);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            opacity: 0.9;
-        }
-
-        .portfolio {
-            background: var(--light-bg);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1;
-            cursor: pointer;
-            border-radius: 2px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 2rem 1.5rem 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .gallery-overlay h4 {
-            color: var(--white);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .contact {
-            background: var(--primary-dark);
-            color: var(--white);
-        }
-
-        .contact h2 {
-            color: var(--white);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: var(--white);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .contact-info h3 {
-            color: var(--accent-gold);
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            color: var(--accent-gold);
-            font-size: 1.3rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--accent-gold);
-            transform: translateY(-3px);
-        }
-
-        .success-message {
-            display: none;
-            padding: 1rem;
-            background: rgba(201, 169, 97, 0.2);
-            border: 1px solid var(--accent-gold);
-            border-radius: 2px;
-            color: var(--accent-gold);
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        footer {
-            background: #1a1a1a;
-            color: var(--white);
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-gold);
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-gold);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .back-to-top.show {
-            display: flex;
-        }
-
-        .back-to-top:hover {
-            background: var(--light-gold-hover);
-            transform: translateY(-5px);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            color: var(--white);
-            font-size: 3rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: var(--accent-gold);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 80%;
-                max-width: 400px;
-                flex-direction: column;
-                background: var(--primary-dark);
-                padding: 5rem 2rem;
-                transition: right 0.4s ease;
-                gap: 2rem;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-menu a {
-                color: var(--white);
-                font-size: 1.3rem;
-                padding: 0.5rem 0;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .hamburger {
-                display: flex;
-                z-index: 1001;
-            }
-
-            .nav-container {
-                padding: 1.5rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero h2 {
-                font-size: 1.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-image img {
-                height: 400px;
-            }
-
-            .highlights {
-                grid-template-columns: 1fr;
-            }
-
-            .services-cards,
-            .consulting-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .stats {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            section h2 {
-                font-size: 2.5rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .btn {
-                padding: 1rem 1.5rem;
-                font-size: 0.9rem;
-                white-space: normal;
-                line-height: 1.5;
-                max-width: 100%;
-                display: inline-block;
-            }
-
-            .cta-section {
-                margin-top: 3rem;
-                padding: 0 1rem;
-            }
-
-            .cta-section .btn {
-                width: 100%;
-                max-width: 350px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.5rem;
-                letter-spacing: 2px;
-            }
-
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .btn {
-                padding: 1rem 1.2rem;
-                font-size: 0.85rem;
-                white-space: normal;
-                line-height: 1.5;
-            }
-
-            .cta-section .btn {
-                width: 100%;
-                max-width: none;
-                padding: 1.2rem 1rem;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-
-            .how-it-works {
-                margin-top: 3rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chef Gabe — Restaurant-Quality Recipes for Home Cooks</title>
+  <meta name="description" content="Learn professional cooking techniques and restaurant-quality recipes from Executive Chef Gabe. Step-by-step guides for steaks, pasta, seafood, and more." />
+  <meta name="keywords" content="chef recipes, restaurant quality recipes, cooking techniques, professional chef tips, easy dinner recipes" />
+  <link rel="canonical" href="https://chefgabe.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chef Gabe — Restaurant-Quality Recipes for Home Cooks" />
+  <meta property="og:description" content="Professional chef recipes and techniques you can make at home. From perfect steaks to handmade pasta." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chefgabe.com/" />
+  <meta property="og:image" content="https://chefgabe.com/images/IMG_8496.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your Publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <!-- JSON-LD: Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Chef Gabe",
+    "url": "https://chefgabe.com",
+    "description": "Restaurant-quality recipes and professional cooking techniques for home cooks.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://chefgabe.com/recipes/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav-container">
-            <div class="logo">GABRIEL LINDSEY</div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#private-chef">Private Chef</a></li>
-                <li><a href="#consulting">Consulting</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="/" class="nav__logo">Chef<span>Gabe</span></a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/recipes/">Recipes</a></li>
+        <li><a href="/about.html">About</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+  </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>GABRIEL LINDSEY</h1>
-            <h2>Executive Chef | Private Chef & Culinary Consultant</h2>
-            <p>Elevated coastal cuisine that keeps it simple</p>
-            <div class="hero-buttons">
-                <a href="#private-chef" class="btn btn-primary">Private Chef Services</a>
-                <a href="#consulting" class="btn btn-secondary">Restaurant Consulting</a>
-            </div>
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero__img" src="images/IMG_8496.jpg" alt="Restaurant-quality seared ribeye steak resting on a cutting board" />
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">Professional Chef Recipes</span>
+        <h1 class="hero__title">Cook Like a<br>Restaurant Chef</h1>
+        <p class="hero__sub">Step-by-step recipes and pro techniques that turn everyday ingredients into unforgettable meals.</p>
+        <div class="hero__actions">
+          <a href="/recipes/" class="btn btn--primary">Browse All Recipes</a>
+          <a href="#featured" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.6);">Today's Pick</a>
         </div>
-        <div class="scroll-indicator">
-            <span></span>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Meet Chef Gabriel</h2>
-            <div class="about-content fade-in">
-                <div class="about-image">
-                    <img src="images/IMG_8515.jpg" alt="Chef Gabriel Lindsey">
-                </div>
-                <div class="about-text">
-                    <h3>Culinary Excellence Rooted in Experience</h3>
-                    <p>With over 12 years of experience in the culinary world, Gabriel Lindsey has honed his craft in some of New York City's most acclaimed fine dining establishments. His journey through prestigious kitchens has shaped a unique culinary philosophy that balances technical precision with creative innovation.</p>
-                    <p>As the former Executive Chef at Model Citizen, Gabriel led a talented team in creating memorable dining experiences that celebrated coastal California cuisine with a modern sensibility. His approach emphasizes the beauty of simplicity—allowing quality ingredients to shine through thoughtful preparation and elegant presentation.</p>
-                    <p>Today, Gabriel brings his expertise directly to your table through private chef services and provides strategic consulting to help restaurants elevate their operations, menus, and overall culinary vision.</p>
-                    <div class="highlights">
-                        <div class="highlight-item">
-                            <span class="highlight-icon">✦</span>
-                            <span class="highlight-text">12+ Years Experience</span>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">✦</span>
-                            <span class="highlight-text">NYC Fine Dining Background</span>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">✦</span>
-                            <span class="highlight-text">Former Executive Chef, Model Citizen</span>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">✦</span>
-                            <span class="highlight-text">Coastal California Specialist</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="private-chef" class="private-chef">
-        <div class="container">
-            <h2>Private Chef Services</h2>
-            <p class="section-subtitle">Bring restaurant-quality dining to your home with personalized culinary experiences tailored to your preferences and occasion.</p>
-            
-            <div class="services-cards fade-in">
-                <div class="service-card">
-                    <div class="service-icon">🍽️</div>
-                    <h3>Intimate Dinners</h3>
-                    <p>Host unforgettable dinner parties with custom menus crafted for your guests. From elegant multi-course meals to relaxed family-style dining, every detail is thoughtfully prepared.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎉</div>
-                    <h3>Special Events</h3>
-                    <p>Celebrate life's milestones with cuisine that matches the moment. Weddings, anniversaries, corporate events—each menu is designed to make your occasion extraordinary.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📅</div>
-                    <h3>Weekly Meal Prep</h3>
-                    <p>Enjoy chef-prepared meals throughout your week. Customized meal planning and preparation that fits your dietary preferences, schedule, and lifestyle.</p>
-                </div>
-            </div>
-
-            <div class="how-it-works fade-in">
-                <h3>How It Works</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>Consultation</h4>
-                        <p>We discuss your vision, dietary needs, and preferences</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>Menu Design</h4>
-                        <p>A custom menu is created specifically for your event</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>Confirmation</h4>
-                        <p>Review and approve all details, timing, and logistics</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h4>The Experience</h4>
-                        <p>Relax and enjoy while every course is expertly prepared</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cta-section">
-                <a href="#contact" class="btn btn-primary">Inquire About Private Chef Services</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="consulting" class="consulting">
-        <div class="container">
-            <h2>Restaurant Consulting</h2>
-            <p class="consulting-intro">Drawing from years of experience managing high-volume operations and leading successful culinary teams, Gabriel provides strategic consulting to help restaurants optimize performance, reduce costs, and elevate their culinary offerings.</p>
-            
-            <div class="consulting-grid fade-in">
-                <div class="consulting-card">
-                    <h4>Menu Development</h4>
-                    <p>Create compelling menus that balance creativity, profitability, and operational efficiency. Strategic item selection and seasonal planning that resonates with your target audience.</p>
-                </div>
-                <div class="consulting-card">
-                    <h4>Kitchen Operations</h4>
-                    <p>Streamline workflows, optimize station setup, and implement systems that increase speed of service while maintaining quality standards.</p>
-                </div>
-                <div class="consulting-card">
-                    <h4>Operational Excellence</h4>
-                    <p>Comprehensive analysis and improvement of kitchen operations, from prep procedures to service flow, ensuring maximum efficiency.</p>
-                </div>
-                <div class="consulting-card">
-                    <h4>Staff Training</h4>
-                    <p>Develop and train culinary teams in techniques, standards, and leadership. Build a culture of excellence and accountability in your kitchen.</p>
-                </div>
-                <div class="consulting-card">
-                    <h4>Concept Development</h4>
-                    <p>From initial vision to full execution, guidance on creating restaurant concepts that stand out in competitive markets.</p>
-                </div>
-                <div class="consulting-card">
-                    <h4>Opening Support</h4>
-                    <p>Navigate the critical pre-opening and launch phases with confidence. Kitchen setup, staff hiring, training, and operational readiness.</p>
-                </div>
-            </div>
-
-            <div class="stats fade-in">
-                <div class="stat">
-                    <div class="stat-number">12%</div>
-                    <div class="stat-label">Labor Cost</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">&lt;30%</div>
-                    <div class="stat-label">Food Cost</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Team Members Managed</div>
-                </div>
-            </div>
-
-            <div class="cta-section">
-                <a href="#contact" class="btn btn-primary">Discuss Your Project</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2>Signature Dishes</h2>
-            <p class="section-subtitle">A glimpse into the artistry and precision that defines Gabriel's culinary approach</p>
-            
-            <div class="gallery fade-in">
-                <div class="gallery-item" data-name="Coastal Creation">
-                    <img src="images/IMG_8496.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Coastal Creation</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Seasonal Elegance">
-                    <img src="images/IMG_8497.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Seasonal Elegance</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Fresh Composition">
-                    <img src="images/IMG_8499.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Fresh Composition</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Refined Simplicity">
-                    <img src="images/IMG_8500.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Refined Simplicity</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Modern Classic">
-                    <img src="images/IMG_8503.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Modern Classic</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Artful Presentation">
-                    <img src="images/IMG_8508.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Artful Presentation</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Culinary Precision">
-                    <img src="images/IMG_8509.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Culinary Precision</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Elevated Comfort">
-                    <img src="images/IMG_8510.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Elevated Comfort</h4>
-                    </div>
-                </div>
-                <div class="gallery-item" data-name="Seasonal Harvest">
-                    <img src="images/IMG_8511.jpg" alt="Signature Dish">
-                    <div class="gallery-overlay">
-                        <h4>Seasonal Harvest</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Let's Create Something Exceptional</h2>
-            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Whether you're planning an intimate dinner or seeking to elevate your restaurant, let's discuss how we can work together.</p>
-            
-            <div class="contact-content">
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Interest *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="private-chef">Private Chef</option>
-                                <option value="consulting">Restaurant Consulting</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                        <div class="success-message" id="successMessage">
-                            Thank you for your inquiry! Gabriel will be in touch within 24 hours.
-                        </div>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-icon">📧</span>
-                            <span>glindsey94@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📱</span>
-                            <span>(904) 451-4918</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <span>Los Angeles, CA</span>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/the_reservoir_dog/" target="_blank" class="social-link" aria-label="Instagram">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div>&copy; 2025 Gabriel Lindsey. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms</a>
-            </div>
-            <div class="social-links">
-                <a href="https://www.instagram.com/the_reservoir_dog/" target="_blank" class="social-link" aria-label="Instagram">
-                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" class="social-link" aria-label="LinkedIn">
-                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
-
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <img src="" alt="Gallery Image" id="modalImage">
-        </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        const nav = document.getElementById('nav');
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const backToTop = document.getElementById('backToTop');
-        const contactForm = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-        const modal = document.getElementById('modal');
-        const modalImage = document.getElementById('modalImage');
-        const modalClose = document.getElementById('modalClose');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+  <!-- AD: Leaderboard banner after hero -->
+  <div class="container">
+    <div class="ad-banner">
+      <div class="ad-unit ad-unit--leaderboard">
+        <!-- AdSense Ad Unit — replace data-ad-slot with your slot ID -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1111111111"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+  </div>
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-                backToTop.classList.add('show');
-            } else {
-                nav.classList.remove('scrolled');
-                backToTop.classList.remove('show');
-            }
+  <!-- FEATURED RECIPE -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="section-header__eyebrow">Featured Recipe</span>
+          <h2 class="section-header__title">This Week's Must-Make</h2>
+        </div>
+        <a href="/recipes/" class="view-all">All Recipes →</a>
+      </div>
+      <div class="featured-recipe">
+        <img class="featured-recipe__img" src="images/IMG_8501.jpg" alt="Braised beef short ribs in rich red wine sauce" loading="lazy" />
+        <div class="featured-recipe__body">
+          <span class="featured-recipe__eyebrow">Dinner &bull; Intermediate</span>
+          <h3 class="featured-recipe__title">Braised Beef Short Ribs in Red Wine</h3>
+          <div class="featured-recipe__meta">
+            <span>⏱ 20 min prep</span>
+            <span>🕐 3.5 hrs cook</span>
+            <span>👥 4 servings</span>
+          </div>
+          <p class="featured-recipe__desc">Fall-off-the-bone beef short ribs slow-braised in a rich Burgundy wine sauce with aromatics and root vegetables. This is the dish that turns a regular Sunday into a memory.</p>
+          <a href="/recipes/braised-short-ribs.html" class="btn btn--primary">Get the Recipe</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementBottom = element.getBoundingClientRect().bottom;
-                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
-                    element.classList.add('visible');
-                }
-            });
-        });
+  <!-- CATEGORIES -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-header__eyebrow">Browse by Category</span>
+        <h2 class="section-header__title">What Are You Cooking?</h2>
+      </div>
+      <div class="category-grid">
+        <a href="/recipes/?category=beef" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/IMG_8496.jpg" alt="Beef recipes" loading="lazy" />
+          <div class="category-card__overlay">
+            <span class="category-card__label">Beef &amp; Steak</span>
+          </div>
+        </a>
+        <a href="/recipes/?category=pasta" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/IMG_8497.jpg" alt="Pasta recipes" loading="lazy" />
+          <div class="category-card__overlay">
+            <span class="category-card__label">Pasta</span>
+          </div>
+        </a>
+        <a href="/recipes/?category=seafood" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/IMG_8498.jpg" alt="Seafood recipes" loading="lazy" />
+          <div class="category-card__overlay">
+            <span class="category-card__label">Seafood</span>
+          </div>
+        </a>
+        <a href="/recipes/?category=dessert" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/IMG_8502.jpg" alt="Dessert recipes" loading="lazy" />
+          <div class="category-card__overlay">
+            <span class="category-card__label">Desserts</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+  <!-- RECIPE GRID -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="section-header__eyebrow">Latest Recipes</span>
+          <h2 class="section-header__title">Fresh From the Kitchen</h2>
+        </div>
+        <a href="/recipes/" class="view-all">View All →</a>
+      </div>
+      <div class="recipe-grid">
 
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        });
+        <article class="recipe-card" data-category="beef">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8496.jpg" alt="Perfect cast iron ribeye steak" loading="lazy" />
+            <span class="recipe-card__badge">Popular</span>
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 25 min</span>
+              <span>👥 2 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/ribeye-steak.html">Perfect Cast Iron Ribeye Steak</a></h3>
+            <p class="recipe-card__desc">The steakhouse secret: a searing-hot cast iron pan, butter basting, and a resting period that locks in every drop of juice.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--easy">Easy</span>
+              <a href="/recipes/ribeye-steak.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        <article class="recipe-card" data-category="pasta">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8497.jpg" alt="Creamy Tuscan garlic pasta" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 30 min</span>
+              <span>👥 4 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/tuscan-pasta.html">Creamy Tuscan Garlic Pasta</a></h3>
+            <p class="recipe-card__desc">Sun-dried tomatoes, fresh spinach, and a velvety parmesan cream sauce — a 30-minute meal that tastes like it took all day.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--easy">Easy</span>
+              <a href="/recipes/tuscan-pasta.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            successMessage.classList.add('show');
-            contactForm.reset();
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
-        });
+        <article class="recipe-card" data-category="seafood">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8498.jpg" alt="Pan-seared salmon with lemon butter sauce" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 20 min</span>
+              <span>👥 2 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/pan-seared-salmon.html">Pan-Seared Salmon with Lemon Butter</a></h3>
+            <p class="recipe-card__desc">Crispy golden skin, perfectly tender flesh, and a bright lemon-caper butter sauce. Restaurant results in 20 minutes flat.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--easy">Easy</span>
+              <a href="/recipes/pan-seared-salmon.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                modalImage.src = img.src;
-                modal.classList.add('show');
-            });
-        });
+        <article class="recipe-card" data-category="soup">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8499.jpg" alt="Classic French onion soup with gruyere" loading="lazy" />
+            <span class="recipe-card__badge">Staff Pick</span>
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 1.5 hrs</span>
+              <span>👥 4 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/french-onion-soup.html">Classic French Onion Soup</a></h3>
+            <p class="recipe-card__desc">Deeply caramelized onions, rich beef broth, and a blanket of bubbling Gruyère. The most rewarding soup you'll ever make.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--medium">Intermediate</span>
+              <a href="/recipes/french-onion-soup.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('show');
-        });
+        <article class="recipe-card" data-category="bread">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8500.jpg" alt="Homemade pizza dough stretched thin" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 2 hrs</span>
+              <span>👥 2 pizzas</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/pizza-dough.html">Neapolitan-Style Pizza Dough</a></h3>
+            <p class="recipe-card__desc">Thin, blistered, chewy perfection — the same high-hydration dough method used in Naples. Once you make this, delivery is ruined forever.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--medium">Intermediate</span>
+              <a href="/recipes/pizza-dough.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
+        <article class="recipe-card" data-category="dessert">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8502.jpg" alt="Brown butter chocolate chip cookies" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 45 min</span>
+              <span>👥 24 cookies</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/brown-butter-cookies.html">Brown Butter Chocolate Chip Cookies</a></h3>
+            <p class="recipe-card__desc">One extra step — browning the butter — adds a deep, nutty toffee flavor that makes these the best chocolate chip cookies you've ever had.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--easy">Easy</span>
+              <a href="/recipes/brown-butter-cookies.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    const elementTop = el.getBoundingClientRect().top;
-                    if (elementTop < window.innerHeight) {
-                        el.classList.add('visible');
-                    }
-                });
-            }, 100);
-        });
-    </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD: In-content rectangle -->
+  <div class="container">
+    <div class="ad-unit ad-unit--in-content" style="max-width:728px;margin:0 auto 2rem;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="2222222222"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <!-- MORE RECIPES -->
+  <section class="section section--gray">
+    <div class="container">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <span class="section-header__eyebrow">More to Explore</span>
+          <h2 class="section-header__title">Dinner Party Showstoppers</h2>
+        </div>
+        <a href="/recipes/" class="view-all">View All →</a>
+      </div>
+      <div class="recipe-grid">
+
+        <article class="recipe-card" data-category="poultry">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8503.jpg" alt="Herb roasted whole chicken golden skin" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 1.5 hrs</span>
+              <span>👥 4 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/roast-chicken.html">Herb-Roasted Whole Chicken</a></h3>
+            <p class="recipe-card__desc">Butter under the skin, high heat, and a simple herb rub produce crackling skin and impossibly juicy meat every single time.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--easy">Easy</span>
+              <a href="/recipes/roast-chicken.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-category="pasta">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8505.jpg" alt="Truffle mac and cheese in cast iron skillet" loading="lazy" />
+            <span class="recipe-card__badge">Luxurious</span>
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 40 min</span>
+              <span>👥 6 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/truffle-mac-and-cheese.html">Truffle Mac &amp; Cheese</a></h3>
+            <p class="recipe-card__desc">A four-cheese béchamel sauce, toasted breadcrumb crust, and a drizzle of black truffle oil that elevates a comfort classic to fine dining.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--medium">Intermediate</span>
+              <a href="/recipes/truffle-mac-and-cheese.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="recipe-card" data-category="beef">
+          <div class="recipe-card__img-wrap">
+            <img class="recipe-card__img" src="images/IMG_8508.jpg" alt="Beef bourguignon with pearl onions and mushrooms" loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <div class="recipe-card__meta">
+              <span>⏱ 4 hrs</span>
+              <span>👥 6 servings</span>
+            </div>
+            <h3 class="recipe-card__title"><a href="/recipes/beef-bourguignon.html">Classic Beef Bourguignon</a></h3>
+            <p class="recipe-card__desc">Julia Child's legendary French stew — beef, burgundy wine, lardons, mushrooms, and pearl onions slow-braised to absolute perfection.</p>
+            <div class="recipe-card__footer">
+              <span class="recipe-card__diff recipe-card__diff--hard">Advanced</span>
+              <a href="/recipes/beef-bourguignon.html" class="btn btn--small btn--outline">View Recipe</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="container">
+      <h2>New Recipes Every Week</h2>
+      <p>Join thousands of home cooks getting professional recipes delivered to their inbox.</p>
+      <form class="newsletter-form" action="#" method="post">
+        <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button type="submit" class="btn btn--primary">Subscribe Free</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="affiliate-disclosure">
+        <strong>Affiliate Disclosure:</strong> ChefGabe.com participates in the Amazon Services LLC Associates Program. As an Amazon Associate, we earn from qualifying purchases at no extra cost to you. We only recommend products we genuinely use and believe in.
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-logo">Chef<span>Gabe</span></span>
+          <p class="footer-about">Professional chef recipes and techniques made accessible for home cooks. Every recipe is tested, detailed, and designed to make you a better cook.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Recipes</p>
+          <ul class="footer-links">
+            <li><a href="/recipes/ribeye-steak.html">Ribeye Steak</a></li>
+            <li><a href="/recipes/tuscan-pasta.html">Tuscan Pasta</a></li>
+            <li><a href="/recipes/pan-seared-salmon.html">Pan-Seared Salmon</a></li>
+            <li><a href="/recipes/beef-bourguignon.html">Beef Bourguignon</a></li>
+            <li><a href="/recipes/">All Recipes →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Site</p>
+          <ul class="footer-links">
+            <li><a href="/about.html">About Chef Gabe</a></li>
+            <li><a href="/recipes/">Recipe Index</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 ChefGabe.com &mdash; All rights reserved.</span>
+        <span><a href="/privacy.html">Privacy</a> &middot; <a href="/contact.html">Contact</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
