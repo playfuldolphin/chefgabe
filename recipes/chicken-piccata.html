@@ -94,6 +94,19 @@
   </div></div></main>
   <section class="newsletter-section"><div class="container"><h2>New Recipes Every Week</h2><p>Get professional chef recipes delivered to your inbox.</p><form class="newsletter-form" action="#" method="post"><input type="email" placeholder="your@email.com" required /><button type="submit" class="btn btn--primary">Subscribe Free</button></form></div></section>
   <footer class="site-footer"><div class="container"><div class="affiliate-disclosure"><strong>Affiliate Disclosure:</strong> As an Amazon Associate, ChefGabe.com earns from qualifying purchases at no extra cost to you.</div><div class="footer-bottom"><span>&copy; 2026 ChefGabe.com</span><span><a href="/recipes/">All Recipes</a> &middot; <a href="/about.html">About</a> &middot; <a href="/privacy.html">Privacy</a></span></div></div></footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('pin-btn');
+    if (!btn) return;
+    var img = document.querySelector('.recipe-header__img');
+    var imgSrc = img ? window.location.origin + img.getAttribute('src').replace('..','') : '';
+    var desc = encodeURIComponent(document.title + ' — ChefGabe.com');
+    var url = encodeURIComponent(window.location.href);
+    var src = encodeURIComponent(imgSrc);
+    btn.href = 'https://pinterest.com/pin/create/button/?url=' + url + '&media=' + src + '&description=' + desc;
+  })();
+  </script>
   <script src="../script.js" defer></script>
 </body>
 </html>

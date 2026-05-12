@@ -60,15 +60,15 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero__img" src="images/cast-iron-ribeye-steak.jpg" alt="Restaurant-quality seared ribeye steak resting on a cutting board" />
+    <img class="hero__img" src="images/cast-iron-ribeye-steak.jpg" alt="Restaurant-quality seared ribeye steak resting on a cutting board" width="1400" height="700" />
     <div class="container">
       <div class="hero__content">
-        <span class="hero__eyebrow">Professional Chef Recipes</span>
-        <h1 class="hero__title">Cook Like a<br>Restaurant Chef</h1>
-        <p class="hero__sub">Step-by-step recipes and pro techniques that turn everyday ingredients into unforgettable meals.</p>
+        <span class="hero__eyebrow">Professional Chef — Real Techniques</span>
+        <h1 class="hero__title">What the Restaurant<br>Doesn't Tell You</h1>
+        <p class="hero__sub">Chef Gabe spent 12 years in professional kitchens. These recipes teach the technique, not just the steps — so you actually get better at cooking.</p>
         <div class="hero__actions">
           <a href="/recipes/" class="btn btn--primary">Browse All Recipes</a>
-          <a href="#featured" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.6);">Today's Pick</a>
+          <a href="#about-gabe" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.6);">Meet Chef Gabe</a>
         </div>
       </div>
     </div>
@@ -89,6 +89,24 @@
       </div>
     </div>
   </div>
+
+  <!-- CHEF BIO STRIP -->
+  <section id="about-gabe" style="background:var(--gray-100);padding:2.5rem 0;border-bottom:1px solid var(--gray-200);">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+        <img src="images/chef-gabe-portrait.jpg" alt="Chef Gabe" width="88" height="88" loading="lazy"
+          style="width:88px;height:88px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--amber);" />
+        <div style="flex:1;min-width:240px;">
+          <p style="font-family:var(--font-serif);font-size:1.15rem;font-weight:700;margin-bottom:0.3rem;color:var(--black);">Chef Gabriel Lindsey</p>
+          <p style="font-size:0.92rem;color:var(--gray-600);margin:0;line-height:1.6;">
+            Executive Chef with 12 years in professional kitchens across New York and Los Angeles.
+            Every recipe here comes with the <em>why</em> — the technique and the science — so you cook better permanently, not just once.
+          </p>
+        </div>
+        <a href="/about.html" class="btn btn--outline btn--small" style="flex-shrink:0;">Full Story →</a>
+      </div>
+    </div>
+  </section>
 
   <!-- FEATURED RECIPE -->
   <section class="section" id="featured">
@@ -124,30 +142,30 @@
         <span class="section-header__eyebrow">Browse by Category</span>
         <h2 class="section-header__title">What Are You Cooking?</h2>
       </div>
-      <div class="category-grid">
+      <div class="category-grid" style="grid-template-columns:repeat(3,1fr);">
         <a href="/recipes/?category=beef" class="category-card" style="text-decoration:none;">
-          <img class="category-card__img" src="images/cast-iron-ribeye-steak.jpg" alt="Beef recipes" loading="lazy" />
-          <div class="category-card__overlay">
-            <span class="category-card__label">Beef &amp; Steak</span>
-          </div>
+          <img class="category-card__img" src="images/cast-iron-ribeye-steak.jpg" alt="Beef and steak recipes" loading="lazy" />
+          <div class="category-card__overlay"><span class="category-card__label">Beef &amp; Steak</span></div>
         </a>
         <a href="/recipes/?category=pasta" class="category-card" style="text-decoration:none;">
           <img class="category-card__img" src="images/creamy-tuscan-garlic-pasta.jpg" alt="Pasta recipes" loading="lazy" />
-          <div class="category-card__overlay">
-            <span class="category-card__label">Pasta</span>
-          </div>
+          <div class="category-card__overlay"><span class="category-card__label">Pasta</span></div>
         </a>
         <a href="/recipes/?category=seafood" class="category-card" style="text-decoration:none;">
           <img class="category-card__img" src="images/pan-seared-salmon.jpg" alt="Seafood recipes" loading="lazy" />
-          <div class="category-card__overlay">
-            <span class="category-card__label">Seafood</span>
-          </div>
+          <div class="category-card__overlay"><span class="category-card__label">Seafood</span></div>
+        </a>
+        <a href="/recipes/?category=poultry" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/herb-roasted-chicken.jpg" alt="Chicken and poultry recipes" loading="lazy" />
+          <div class="category-card__overlay"><span class="category-card__label">Chicken</span></div>
+        </a>
+        <a href="/recipes/?category=soup" class="category-card" style="text-decoration:none;">
+          <img class="category-card__img" src="images/french-onion-soup.jpg" alt="Soup recipes" loading="lazy" />
+          <div class="category-card__overlay"><span class="category-card__label">Soups</span></div>
         </a>
         <a href="/recipes/?category=dessert" class="category-card" style="text-decoration:none;">
-          <img class="category-card__img" src="images/brown-butter-cookies.jpg" alt="Dessert recipes" loading="lazy" />
-          <div class="category-card__overlay">
-            <span class="category-card__label">Desserts</span>
-          </div>
+          <img class="category-card__img" src="images/creme-brulee.jpg" alt="Dessert recipes" loading="lazy" />
+          <div class="category-card__overlay"><span class="category-card__label">Desserts</span></div>
         </a>
       </div>
     </div>
@@ -367,7 +385,7 @@
   <section class="newsletter-section">
     <div class="container">
       <h2>New Recipes Every Week</h2>
-      <p>Join thousands of home cooks getting professional recipes delivered to their inbox.</p>
+      <p>Get a new professional recipe and technique guide every week — free.</p>
       <form class="newsletter-form" action="#" method="post">
         <input type="email" placeholder="your@email.com" required aria-label="Email address" />
         <button type="submit" class="btn btn--primary">Subscribe Free</button>
