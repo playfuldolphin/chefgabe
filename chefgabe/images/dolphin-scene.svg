@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bdeeff"/>
+      <stop offset="55%" stop-color="#7fd4f0"/>
+      <stop offset="100%" stop-color="#3fa9d8"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f8fc4"/>
+      <stop offset="45%" stop-color="#0f6fa8"/>
+      <stop offset="100%" stop-color="#073f63"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9fcdd9"/>
+      <stop offset="100%" stop-color="#3f7c92"/>
+    </linearGradient>
+    <linearGradient id="body2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#86bdcb"/>
+      <stop offset="100%" stop-color="#356d80"/>
+    </linearGradient>
+  </defs>
+
+  <!-- frame -->
+  <rect x="0" y="0" width="800" height="800" fill="#fdf6e3"/>
+  <rect x="24" y="24" width="752" height="752" fill="url(#sky)"/>
+
+  <!-- sun -->
+  <circle cx="610" cy="150" r="58" fill="#ffd95e"/>
+  <g stroke="#ffd95e" stroke-width="8" stroke-linecap="round">
+    <line x1="610" y1="50" x2="610" y2="20"/>
+    <line x1="610" y1="250" x2="610" y2="280"/>
+    <line x1="710" y1="150" x2="740" y2="150"/>
+    <line x1="510" y1="150" x2="480" y2="150"/>
+    <line x1="681" y1="79" x2="702" y2="58"/>
+    <line x1="539" y1="221" x2="518" y2="242"/>
+    <line x1="681" y1="221" x2="702" y2="242"/>
+    <line x1="539" y1="79" x2="518" y2="58"/>
+  </g>
+
+  <!-- clouds -->
+  <g fill="#ffffff" opacity="0.9">
+    <ellipse cx="160" cy="120" rx="55" ry="26"/>
+    <ellipse cx="205" cy="105" rx="40" ry="22"/>
+    <ellipse cx="115" cy="105" rx="35" ry="20"/>
+    <ellipse cx="430" cy="80" rx="42" ry="20"/>
+    <ellipse cx="465" cy="95" rx="30" ry="16"/>
+  </g>
+
+  <!-- sea -->
+  <rect x="24" y="430" width="752" height="346" fill="url(#sea)"/>
+  <path d="M24 430 Q 200 400 400 430 T 776 430 V 466 Q 600 438 400 466 T 24 466 Z" fill="#2aa3d6"/>
+
+  <!-- big dolphin -->
+  <g>
+    <!-- body crescent -->
+    <path d="M478 300
+             C 430 222 318 200 234 272
+             C 214 292 204 332 206 372
+             C 240 396 322 418 404 396
+             C 436 376 460 340 478 300 Z"
+          fill="url(#body)"/>
+    <!-- belly highlight -->
+    <path d="M250 360 C 290 388 350 396 396 380 C 360 392 300 388 262 368 Z" fill="#eaf6f8" opacity="0.85"/>
+    <!-- dorsal fin -->
+    <path d="M296 244 C 290 212 306 184 328 176 C 318 200 316 222 320 246 Z" fill="url(#body2)"/>
+    <!-- pectoral fin -->
+    <path d="M372 388 C 378 410 398 422 416 414 C 400 406 386 396 376 384 Z" fill="url(#body2)"/>
+    <!-- tail flukes -->
+    <path d="M210 366 C 176 344 148 326 138 312 C 150 344 160 366 188 380 Z" fill="url(#body2)"/>
+    <path d="M210 380 C 178 404 150 424 138 440 C 154 412 166 392 192 374 Z" fill="url(#body2)"/>
+    <!-- eye + smile -->
+    <circle cx="448" cy="284" r="6.5" fill="#0c2530"/>
+    <path d="M456 300 Q 470 308 482 297" stroke="#0c2530" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- small dolphin -->
+  <g opacity="0.95" transform="translate(120,150) scale(0.55)">
+    <path d="M478 300
+             C 430 222 318 200 234 272
+             C 214 292 204 332 206 372
+             C 240 396 322 418 404 396
+             C 436 376 460 340 478 300 Z"
+          fill="url(#body)"/>
+    <path d="M250 360 C 290 388 350 396 396 380 C 360 392 300 388 262 368 Z" fill="#eaf6f8" opacity="0.85"/>
+    <path d="M296 244 C 290 212 306 184 328 176 C 318 200 316 222 320 246 Z" fill="url(#body2)"/>
+    <path d="M372 388 C 378 410 398 422 416 414 C 400 406 386 396 376 384 Z" fill="url(#body2)"/>
+    <path d="M210 366 C 176 344 148 326 138 312 C 150 344 160 366 188 380 Z" fill="url(#body2)"/>
+    <path d="M210 380 C 178 404 150 424 138 440 C 154 412 166 392 192 374 Z" fill="url(#body2)"/>
+    <circle cx="448" cy="284" r="6.5" fill="#0c2530"/>
+    <path d="M456 300 Q 470 308 482 297" stroke="#0c2530" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- foreground waves -->
+  <path d="M24 700 Q 200 670 400 700 T 776 700 V 776 H 24 Z" fill="#0b5685"/>
+  <path d="M24 740 Q 220 715 400 740 T 776 740 V 776 H 24 Z" fill="#073f63"/>
+</svg>

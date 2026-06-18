@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Dolphins to the Max dot Com</title>
+<meta name="description" content="Dolphins to the Max — an infinitely zoomable dolphin, made for fun.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="canvas"></canvas>
+
+    <div id="hint">
+      <p><strong>Dolphins to the Max</strong></p>
+      <p>Scroll or pinch to zoom in. Drag to look around. It never stops.</p>
+      <button id="hint-close" aria-label="Close">Got it</button>
+    </div>
+
+    <div id="footer">
+      Dolphins to the Max &mdash; zoom forever &middot; inspired by
+      <a href="https://www.koalastothemax.com" target="_blank" rel="noopener">Koalas to the Max</a>
+    </div>
+
+    <div id="reset" title="Reset zoom">⟲</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
